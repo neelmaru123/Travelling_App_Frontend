@@ -4,9 +4,12 @@ import 'package:flutter/rendering.dart';
 import 'package:travelling_app/config/colors/colors.dart';
 import 'package:travelling_app/config/components/horizontal_city_scroller.dart';
 import 'package:travelling_app/config/routes/routes_name.dart';
+import 'package:travelling_app/views/Bottom_navigationBar_items/explore_screen.dart';
 import 'package:travelling_app/views/horizontal_scroller_components/near_by_places.dart';
 import 'package:travelling_app/views/horizontal_scroller_components/top_catagory_places.dart';
 import 'package:travelling_app/views/horizontal_scroller_components/trips_by_place.dart';
+import 'package:travelling_app/views/placeByIdComponents/reviews_by_placeId.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 Map<String, dynamic> Place = {
   'img': 'https://th.bing.com/th/id/OIP.YfEWxvP3vo59bzzbXkY41AHaE8?w=291&h=194&c=7&r=0&o=5&dpr=1.3&pid=1.7',
@@ -56,9 +59,16 @@ class _PlaceByIdState extends State<PlaceById> {
     }
   }
 
+  Future<void> _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    print(widget.isTripVisible);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.darkColor,
@@ -119,7 +129,7 @@ class _PlaceByIdState extends State<PlaceById> {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    widget.placeData["city"] ?? "No district",
+                    'City : ' + widget.placeData["city"] ?? "No district",
                     style: TextStyle(
                         fontSize: 20, color: AppColors.mutedBlueColor),
                   ),
@@ -134,7 +144,7 @@ class _PlaceByIdState extends State<PlaceById> {
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
                             AppColors.yellowColor)),
-                    onPressed: () {},
+                    onPressed: () => _launchURL(widget.placeData["locationUrl"] ?? "https://www.google.com"),
                     child: Padding(
                       padding: const EdgeInsets.only(
                           left: 20, right: 20, top: 10, bottom: 10),
@@ -150,7 +160,61 @@ class _PlaceByIdState extends State<PlaceById> {
                   SizedBox(height: 10),
                   widget.isTripVisible == true ? TripsByPlace(placeId : widget.placeData['_id']) : Container(),
                   widget.isNearbyVisible == true ? NearByPlaces(id: widget.placeData['_id'], location: widget.placeData['location']) : Container(),
+                  Text(
+                    "Contribute",
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.darkColor),
+                  ),
+                  SizedBox(height: 10),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          print("Write a review");
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all(color: AppColors.softGreenColor, width: 3.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Center(
+                              child: Text('Write a review', style: TextStyle(fontSize: 20, color: AppColors.darkColor),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      GestureDetector(
+                        onTap: () {
+                          print("Upload a photo");
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all(color: AppColors.softGreenColor, width: 3.0),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Center(
+                              child: Text('Upload a photo', style: TextStyle(fontSize: 19, color: AppColors.darkColor),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  ReviewsByPlaceId(placeId: widget.placeData['_id']),
                 ],
+
               ),
             )
           ],

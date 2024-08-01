@@ -1,8 +1,6 @@
-import 'dart:collection';
-import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:travelling_app/config/colors/colors.dart';
-import 'package:travelling_app/config/routes/routes_name.dart';
 import 'package:travelling_app/views/Bottom_navigationBar_items/explore_screen.dart';
 import 'package:travelling_app/views/Bottom_navigationBar_items/search_screen.dart';
 

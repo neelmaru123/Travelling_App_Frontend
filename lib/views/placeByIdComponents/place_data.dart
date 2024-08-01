@@ -7,7 +7,7 @@ class PlaceData extends StatelessWidget {
   const PlaceData({super.key, required this.placeId});
 
   Future<Map<String, dynamic>> fetchPlace() async {
-    // ObjectId objectId = ObjectId.fromHexString(placeId);
+    print("fetchPlace called"); // Debugging line
     final res = await placeApi.Place().getPlaceById(placeId);
     return res['data'];
   }

@@ -1,21 +1,23 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:travelling_app/config/API/Place/place_api.dart';
-import 'package:travelling_app/config/components/horizontal_scroller.dart';
+import 'package:travelling_app/config/components/reviews_card_view.dart';
 
+import '../../config/API/Reviews/review_api.dart';
 
+class ReviewsByPlaceId extends StatelessWidget {
+  final String placeId;
+  const ReviewsByPlaceId({super.key, required this.placeId});
 
-class TopCatagoryPlaces extends StatelessWidget {
-
-  Future<List<dynamic>> fetchPlaces() async {
-    print("fetchPlaces called"); // Debugging line
-    final res = await Place().getPlaces();
+  Future<List<dynamic>> fetchPlace() async {
+    final res = await Review().getReviewsByPlaceId(placeId);
     return res['data'];
   }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<dynamic>>(
-      future: fetchPlaces(),
+      future: fetchPlace(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
@@ -24,10 +26,7 @@ class TopCatagoryPlaces extends StatelessWidget {
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
           return Center(child: Text('No data available'));
         } else {
-          return HorizontalScroller(
-            title: "Top Religious places",
-            PlaceList: snapshot.data!,
-          );
+          return ReviewsCardView(PlaceList: snapshot.data!);
         }
       },
     );

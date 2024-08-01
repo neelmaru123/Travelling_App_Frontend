@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:travelling_app/config/Delegate/custom_search_delegate.dart';
 import 'package:travelling_app/config/colors/colors.dart';
 import 'package:travelling_app/config/components/horizontal_city_name_scroller.dart';
 import 'package:travelling_app/config/components/places_grid.dart';
@@ -13,6 +14,18 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  final TextEditingController _controller = TextEditingController();
+  final CustomSearchDelegate _searchDelegate = CustomSearchDelegate();
+  List<String> _searchResults = [];
+
+  void _updateSearchResults(String query) {
+    setState(() {
+      _searchResults = _searchDelegate.searchList
+          .where((item) => item.toLowerCase().contains(query.toLowerCase()))
+          .toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,6 +49,13 @@ class _SearchScreenState extends State<SearchScreen> {
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: TextFormField(
+                  controller: _controller,
+                  onTap: () {
+                    showSearch(
+                      context: context,
+                      delegate: _searchDelegate,
+                    );
+                  },
                   decoration: InputDecoration(
                     disabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),

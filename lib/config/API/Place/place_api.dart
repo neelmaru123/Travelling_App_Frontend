@@ -8,9 +8,7 @@ class Place {
   final api_url = Auth.api_url;
 
   Future<dynamic> getPlaces() async {
-    print("getPlaces called"); // Debugging line
     final response = await http.get(Uri.parse(api_url + "place"));
-    print(response.body);
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {

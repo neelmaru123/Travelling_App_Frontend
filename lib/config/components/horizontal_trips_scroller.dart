@@ -17,7 +17,7 @@ Widget HorizontalTripsScroller(
         ),
       ),
       Container(
-          height: 330,
+          height: 340,
           child: ListView.builder(
               itemCount: PlaceList.length,
               scrollDirection: Axis.horizontal,
@@ -39,8 +39,7 @@ Widget HorizontalTripsScroller(
                             borderRadius: BorderRadius.circular(
                                 7.0), // Adjust the value to your preference
                             image: DecorationImage(
-                              image: NetworkImage(PlaceList[index]
-                                      ['Image'] ??
+                              image: NetworkImage(PlaceList[index]['Image'] ??
                                   "https://th.bing.com/th/id/OIP.YKj7OrGcqWLugJN6YtlGawHaEK?w=293&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"),
                               fit: BoxFit.cover,
                             ),
