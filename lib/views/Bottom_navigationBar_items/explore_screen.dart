@@ -100,6 +100,17 @@ class _ExploreScreenState extends State<ExploreScreen> {
       child: Column(
         children: [
           Container(
+            // decoration: BoxDecoration(
+            //   gradient: LinearGradient(
+            //     begin: Alignment.topCenter,
+            //     end: Alignment.bottomCenter,
+            //     colors: [
+            //       AppColors.darkColor,
+            //       AppColors.whiteColor
+            //     ],
+            //     stops: [0.6, 1.0],
+            //   ),
+            // ),
             child: Padding(
               padding: const EdgeInsets.only(bottom: 20.0, top: 10),
               child: CarouselSlider(

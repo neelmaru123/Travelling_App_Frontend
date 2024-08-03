@@ -9,7 +9,7 @@ import 'package:travelling_app/views/horizontal_scroller_components/near_by_plac
 import 'package:travelling_app/views/horizontal_scroller_components/top_catagory_places.dart';
 import 'package:travelling_app/views/horizontal_scroller_components/trips_by_place.dart';
 import 'package:travelling_app/views/placeByIdComponents/reviews_by_placeId.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 
 Map<String, dynamic> Place = {
   'img': 'https://th.bing.com/th/id/OIP.YfEWxvP3vo59bzzbXkY41AHaE8?w=291&h=194&c=7&r=0&o=5&dpr=1.3&pid=1.7',
@@ -59,13 +59,13 @@ class _PlaceByIdState extends State<PlaceById> {
     }
   }
 
-  Future<void> _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  // Future<void> _launchURL(String url) async {
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +144,7 @@ class _PlaceByIdState extends State<PlaceById> {
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
                             AppColors.yellowColor)),
-                    onPressed: () => _launchURL(widget.placeData["locationUrl"] ?? "https://www.google.com"),
+                    onPressed: () => {},
                     child: Padding(
                       padding: const EdgeInsets.only(
                           left: 20, right: 20, top: 10, bottom: 10),
@@ -178,7 +178,7 @@ class _PlaceByIdState extends State<PlaceById> {
                           width: MediaQuery.of(context).size.width * 0.4,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
-                            border: Border.all(color: AppColors.softGreenColor, width: 3.0),
+                            border: Border.all(color: AppColors.darkColor, width: 3.0),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
@@ -198,7 +198,7 @@ class _PlaceByIdState extends State<PlaceById> {
                           width: MediaQuery.of(context).size.width * 0.4,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
-                            border: Border.all(color: AppColors.softGreenColor, width: 3.0),
+                            border: Border.all(color: AppColors.darkColor, width: 3.0),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),

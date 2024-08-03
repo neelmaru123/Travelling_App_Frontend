@@ -85,7 +85,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(7.0),
-                            color: AppColors.softGreenColor),
+                            color: AppColors.darkColor),
                       ),
                       Container(
                         height: 200,

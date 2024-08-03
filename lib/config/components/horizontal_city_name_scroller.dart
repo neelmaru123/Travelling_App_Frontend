@@ -24,11 +24,11 @@ class _HorizontalCityNameScrollerState extends State<HorizontalCityNameScroller>
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: AppColors.softGreenColor, width: 3.0),
+               color: AppColors.darkColor
               ),
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: Text('${city[index]}', style: TextStyle(fontSize: 20, color: AppColors.darkColor),
+                child: Text('${city[index]}', style: TextStyle(fontSize: 20, color: AppColors.whiteColor),
               ),
             ),
           ));
