@@ -39,6 +39,7 @@ class PlaceById extends StatefulWidget {
 
 class _PlaceByIdState extends State<PlaceById> {
   int _selectedIndex = 0;
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -70,6 +71,7 @@ class _PlaceByIdState extends State<PlaceById> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
         backgroundColor: AppColors.darkColor,
         foregroundColor: AppColors.whiteColor,
@@ -123,7 +125,7 @@ class _PlaceByIdState extends State<PlaceById> {
                       Text(
                         widget.placeData["rating"]?.toString() ?? "No rating",
                         style: TextStyle(
-                            fontSize: 20, color: AppColors.mutedBlueColor),
+                            fontSize: 20, color: AppColors.DarkGreyColor),
                       ),
                     ],
                   ),
@@ -131,13 +133,13 @@ class _PlaceByIdState extends State<PlaceById> {
                   Text(
                     'City : ' + widget.placeData["city"] ?? "No district",
                     style: TextStyle(
-                        fontSize: 20, color: AppColors.mutedBlueColor),
+                        fontSize: 20, color: AppColors.DarkGreyColor),
                   ),
                   SizedBox(height: 10),
                   Text(
                     widget.placeData["description"] ?? "No description",
                     style: TextStyle(
-                        fontSize: 20, color: AppColors.mutedBlueColor),
+                        fontSize: 20, color: AppColors.DarkGreyColor),
                   ),
                   SizedBox(height: 10),
                   ElevatedButton(
@@ -153,7 +155,7 @@ class _PlaceByIdState extends State<PlaceById> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
-                            color: AppColors.darkGreenColor),
+                            color: AppColors.darkColor),
                       ),
                     ),
                   ),
@@ -170,77 +172,85 @@ class _PlaceByIdState extends State<PlaceById> {
                   SizedBox(height: 10),
                   Row(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          print("Write a review");
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            border: Border.all(color: AppColors.darkColor, width: 3.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Center(
-                              child: Text('Write a review', style: TextStyle(fontSize: 20, color: AppColors.darkColor),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            print("Write a review");
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                              border: Border.all(color: AppColors.darkColor, width: 3.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Center(
+                                child: Text(
+                                  'Write a review',
+                                  style: TextStyle(fontSize: 20, color: AppColors.darkColor),
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(width: 10),
-                      GestureDetector(
-                        onTap: () {
-                          print("Upload a photo");
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            border: Border.all(color: AppColors.darkColor, width: 3.0),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Center(
-                              child: Text('Upload a photo', style: TextStyle(fontSize: 19, color: AppColors.darkColor),
+                      SizedBox(width: 10), // Optional spacing between the two containers
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            print("Upload a photo");
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                              border: Border.all(color: AppColors.darkColor, width: 3.0),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Center(
+                                child: Text(
+                                  'Upload a photo',
+                                  style: TextStyle(fontSize: 19, color: AppColors.darkColor),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                   SizedBox(height: 20),
-                  ReviewsByPlaceId(placeId: widget.placeData['_id']),
+
                 ],
 
               ),
-            )
+            ),
+            ReviewsByPlaceId(placeId: widget.placeData['_id']),
           ],
         ),
       )),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: AppColors.mutedBlueColor,
+        backgroundColor: AppColors.darkColor,
         currentIndex: 0,
-        selectedItemColor: AppColors.darkColor,
-        unselectedItemColor: AppColors.mutedBlueColor,
+        selectedItemColor: AppColors.whiteColor,
+        unselectedItemColor: AppColors.greyColor,
+        type: BottomNavigationBarType.fixed,
         onTap: _onItemTapped,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
+            icon: Icon(Icons.home_outlined, size: _selectedIndex == 0 ? 35 : 25),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search_rounded),
+            icon: Icon(Icons.search_rounded, size: _selectedIndex == 1 ? 35 : 25),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.star_border),
+            icon: Icon(Icons.rate_review_outlined, size: _selectedIndex == 2 ? 35 : 25),
             label: 'Review',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
+            icon: Icon(Icons.account_circle_outlined, size: _selectedIndex == 3 ? 35 : 25),
             label: 'Profile',
           ),
         ],

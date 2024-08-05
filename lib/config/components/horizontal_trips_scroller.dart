@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:travelling_app/config/colors/colors.dart';
 
 Widget HorizontalTripsScroller(
@@ -10,14 +11,14 @@ Widget HorizontalTripsScroller(
         padding: const EdgeInsets.only(left: 15, top: 15),
         child: Text(
           title,
-          style: TextStyle(
+          style: GoogleFonts.rubik(
               fontSize: 25,
               fontWeight: FontWeight.bold,
               color: AppColors.blackColor),
         ),
       ),
       Container(
-          height: 340,
+          height: 310,
           child: ListView.builder(
               itemCount: PlaceList.length,
               scrollDirection: Axis.horizontal,
@@ -33,8 +34,8 @@ Widget HorizontalTripsScroller(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          height: 250,
-                          width: 250,
+                          height: 200,
+                          width: 200,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
                                 7.0), // Adjust the value to your preference
@@ -48,15 +49,21 @@ Widget HorizontalTripsScroller(
                         SizedBox(
                             height:
                                 10), // Add some spacing between the image and the text
-                        Text(
-                          PlaceList[index]['tripName'] ?? 'No name',
-                          style: TextStyle(
-                              fontSize: 20, color: AppColors.mutedBlueColor),
+                        Container(
+                          width: 200,
+                          child: Text(
+                            PlaceList[index]['tripName'] ?? 'No name',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: AppColors.DarkGreyColor,
+                            ),
+                            softWrap: true,
+                          ),
                         ),
                         Text(
                           PlaceList[index]['tripType']?.toString() ?? 'Nn type',
                           style: TextStyle(
-                              fontSize: 15, color: AppColors.mutedBlueColor),
+                              fontSize: 15, color: AppColors.DarkGreyColor),
                         ),
                       ],
                     ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:travelling_app/config/colors/colors.dart';
 
 List PlaceList = [
@@ -33,7 +34,7 @@ Widget HorizontalCityScroller() {
         padding: const EdgeInsets.only(left: 15, top: 15),
         child: Text(
           "Most visited cities",
-          style: TextStyle(
+          style: GoogleFonts.rubik(
               fontSize: 25,
               fontWeight: FontWeight.bold,
               color: AppColors.blackColor),

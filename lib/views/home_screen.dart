@@ -36,36 +36,36 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SafeArea(
           child: Screens[_currentIndex],
         ),
-        bottomNavigationBar: Container(
-          color: AppColors.mutedBlueColor,
-          child: BottomNavigationBar(
-            currentIndex: _currentIndex,
-            selectedItemColor: AppColors.darkColor,
-            unselectedItemColor: AppColors.mutedBlueColor,
-            onTap: (index) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.search_rounded),
-                label: 'Search',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.rate_review_outlined),
-                label: 'Review',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.account_circle_outlined),
-                label: 'Profile',
-              ),
-            ],
-          ),
-        ));
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          backgroundColor: AppColors.darkColor,
+          selectedItemColor: AppColors.whiteColor,
+          unselectedItemColor: AppColors.greyColor,
+          type: BottomNavigationBarType.fixed, // Set the type to fixed
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined, size: _currentIndex == 0 ? 35 : 25),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search_rounded, size: _currentIndex == 1 ? 35 : 25),
+              label: 'Search',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.rate_review_outlined, size: _currentIndex == 2 ? 35 : 25),
+              label: 'Review',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle_outlined, size: _currentIndex == 3 ? 35 : 25),
+              label: 'Profile',
+            ),
+          ],
+        )
+    );
   }
 }

@@ -61,7 +61,7 @@ class OnePlaceView extends StatelessWidget {
                       child: Text(
                         "Explore",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15, color: AppColors.darkGreenColor),
+                            fontWeight: FontWeight.bold, fontSize: 15, color: AppColors.darkColor),
                       ),
                     ),
                   ),

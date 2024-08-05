@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:travelling_app/config/colors/colors.dart';
 import 'package:travelling_app/config/components/internet_exception_widget.dart';
 import 'package:travelling_app/config/routes/routes_name.dart';
@@ -11,14 +12,14 @@ Widget HorizontalScroller({required String title, required List PlaceList}) {
         padding: const EdgeInsets.only(left: 15, top: 15),
         child: Text(
           title,
-          style: TextStyle(
+          style: GoogleFonts.rubik(
               fontSize: 25,
               fontWeight: FontWeight.bold,
               color: AppColors.blackColor),
         ),
       ),
       Container(
-          height: 380,
+          height: 330,
           child: ListView.builder(
               itemCount: PlaceList.length,
               scrollDirection: Axis.horizontal,
@@ -34,8 +35,8 @@ Widget HorizontalScroller({required String title, required List PlaceList}) {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          height: 250,
-                          width: 250,
+                          height: 200,
+                          width: 200,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
                                 7.0), // Adjust the value to your preference
@@ -51,17 +52,17 @@ Widget HorizontalScroller({required String title, required List PlaceList}) {
                         Text(
                           PlaceList[index]['placeName'] ?? 'No name',
                           style: TextStyle(
-                              fontSize: 20, color: AppColors.mutedBlueColor),
+                              fontSize: 20, color: AppColors.DarkGreyColor),
                         ),
                         Text(
                           PlaceList[index]['rating']?.toString() ?? 'No rating',
                           style: TextStyle(
-                              fontSize: 15, color: AppColors.mutedBlueColor),
+                              fontSize: 15, color: AppColors.DarkGreyColor),
                         ),
                         Text(
                           PlaceList[index]['district'] ?? 'No district',
                           style: TextStyle(
-                              fontSize: 15, color: AppColors.mutedBlueColor),
+                              fontSize: 15, color: AppColors.DarkGreyColor),
                         ),
                       ],
                     ),

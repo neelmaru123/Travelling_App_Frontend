@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:travelling_app/config/Delegate/custom_search_delegate.dart';
 import 'package:travelling_app/config/colors/colors.dart';
 import 'package:travelling_app/config/components/horizontal_city_name_scroller.dart';
@@ -40,8 +41,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
                   "Search",
-                  style: TextStyle(
-                      fontSize: 30,
+                  style: GoogleFonts.rubik(
+                      fontSize: 35,
                       fontWeight: FontWeight.bold,
                       color: AppColors.darkColor),
                 ),
@@ -141,7 +142,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 padding: const EdgeInsets.only(left: 15, top: 15),
                 child: Text(
                   "Most visited cities",
-                  style: TextStyle(
+                  style: GoogleFonts.rubik(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                       color: AppColors.blackColor),
@@ -157,7 +158,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       padding: const EdgeInsets.only(left: 15, top: 15),
                       child: Text(
                         "Most visited cities",
-                        style: TextStyle(
+                        style: GoogleFonts.rubik(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
                             color: AppColors.blackColor),
