@@ -36,6 +36,21 @@
     // The value below is injected by flutter build, do not touch.
     const serviceWorkerVersion = null;
   </script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+  <script>
+    const firebaseConfig = {
+     apiKey: "AIzaSyCwxrV-9k-99arnGEIk2QWSiLTHN7FYn9Q",
+  authDomain: "travelling-app-8cb49.firebaseapp.com",
+  projectId: "travelling-app-8cb49",
+  storageBucket: "travelling-app-8cb49.appspot.com",
+  messagingSenderId: "977924980282",
+  appId: "1:977924980282:web:0d43e903b76096de57ff03",
+  measurementId: "G-ZCVP10CM21"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
 </head>

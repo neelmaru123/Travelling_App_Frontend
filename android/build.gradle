@@ -8,7 +8,17 @@ buildscript {
 //        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 //        classpath 'com.android.tools.build:gradle:7.0.2'
         classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.google.firebase:perf-plugin:1.4.1'
     }
+}
+
+plugins {
+    // To benefit from the latest Performance Monitoring plugin features,
+    // update your Android Gradle plugin dependency to at least v3.4.0
+    id 'com.android.application' version '7.3.0' apply false
+
+    // Add the dependency for the Performance Monitoring Gradle plugin
+    id 'com.google.firebase.firebase-perf' version '1.4.2' apply false
 }
 
 allprojects {
