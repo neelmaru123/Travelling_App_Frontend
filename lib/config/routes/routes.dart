@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:travelling_app/config/components/add_review_screen_1.dart';
+import 'package:travelling_app/config/components/add_review_screen_2.dart';
 import 'package:travelling_app/config/routes/routes_name.dart';
 import 'package:travelling_app/views/home_screen.dart';
 import 'package:travelling_app/views/login_screen.dart';
@@ -26,6 +28,14 @@ class Routes{
       case RoutesName.placeDataScreen:
         final String id = settings.arguments as String;
         return MaterialPageRoute(builder: (context) => PlaceData(placeId: id));
+        break;
+      case RoutesName.addReviewScreen1:
+        final String id = settings.arguments as String;
+        return MaterialPageRoute(builder: (context) => AddReviewScreen1(placeId: id));
+        break;
+      case RoutesName.addReviewScreen2:
+        final Map<String, dynamic> review = settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(builder: (context) => AddReviewScreen2(review: review,));
         break;
 
       default:

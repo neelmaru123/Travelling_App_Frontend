@@ -23,13 +23,14 @@ class PlaceById extends StatefulWidget {
   bool? isTripVisible;
   bool? isNearbyVisible;
   bool? isPlaceNearByCityVisible;
+  String? placeId;
   final Map<String, dynamic> placeData;
   PlaceById({
     Key? key,
     required this.placeData,
     this.isTripVisible = false,
     this.isNearbyVisible = false,
-    this.isPlaceNearByCityVisible = false
+    this.isPlaceNearByCityVisible = false,
   }) : super(key: key);
 
 
@@ -175,7 +176,7 @@ class _PlaceByIdState extends State<PlaceById> {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            print("Write a review");
+                            Navigator.pushNamed(context, RoutesName.addReviewScreen1, arguments: widget.placeData["_id"]);
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -198,7 +199,7 @@ class _PlaceByIdState extends State<PlaceById> {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
-                            print("Upload a photo");
+
                           },
                           child: Container(
                             decoration: BoxDecoration(

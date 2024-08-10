@@ -24,7 +24,7 @@ class PlaceData extends StatelessWidget {
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
           return Center(child: Text('No data available'));
         } else {
-          return PlaceById(isTripVisible: true,placeData: snapshot.data!, isNearbyVisible: true, isPlaceNearByCityVisible: true);
+          return PlaceById(isTripVisible: true,placeData: snapshot.data!, isNearbyVisible: true, isPlaceNearByCityVisible: true,);
         }
       },
     );

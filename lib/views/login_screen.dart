@@ -110,6 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (_formKey.currentState!.validate()) {
                                 dynamic res = await Auth()
                                     .login(email.text, password.text);
+                                print(res);
                                 if (res != null) {
                                   SharedPreferences prefs =
                                       await SharedPreferences.getInstance();

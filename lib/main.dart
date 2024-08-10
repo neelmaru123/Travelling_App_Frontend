@@ -2,6 +2,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelling_app/config/Delegate/custom_search_delegate.dart';
+import 'package:travelling_app/config/components/add_review_screen_1.dart';
 import 'package:travelling_app/config/components/place_by_id.dart';
 import 'package:travelling_app/config/routes/routes_name.dart';
 import 'package:travelling_app/views/Bottom_navigationBar_items/search_screen.dart';
@@ -16,8 +17,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'config/routes/routes.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -62,21 +63,25 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Routes.generateRoute,
       // navigatorObservers: [FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)],
-      home: HomeScreen(),
-      // home: FutureBuilder(
-      //   future: isFirstTime(),
-      //   builder: (context, AsyncSnapshot<bool> snapshot) {
-      //     if (snapshot.connectionState == ConnectionState.waiting) {
-      //       return CircularProgressIndicator(); // Show loading spinner while waiting
-      //     } else {
-      //       if (snapshot.hasError) {
-      //         return Text('Error: ${snapshot.error}');
-      //       } else {
-      //         return snapshot.data == true ? WelcomeScreen() : isLogged() == true ? HomeScreen() : LoginScreen();
-      //       }
-      //     }
-      //   },
-      // ),
+      // home: HomeScreen(),
+      home: FutureBuilder(
+        future: isFirstTime(),
+        builder: (context, AsyncSnapshot<bool> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator(); // Show loading spinner while waiting
+          } else {
+            if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else {
+              return snapshot.data == true
+                  ? WelcomeScreen()
+                  : (isLogged() == true
+                      ? HomeScreen()
+                      : LoginScreen());
+            }
+          }
+        },
+      ),
     );
   }
 }
