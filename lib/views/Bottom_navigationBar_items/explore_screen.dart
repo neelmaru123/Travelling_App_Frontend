@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travelling_app/config/colors/colors.dart';
@@ -115,11 +117,94 @@ class _ExploreScreenState extends State<ExploreScreen> {
       .toList();
 
   @override
+  void initState() {
+    FirebaseAnalytics.instance.logScreenView(screenName: 'Explore_Screen');
+    // TODO: implement initState
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: SingleChildScrollView(
       child: Column(
         children: [
+          Container(
+            decoration: BoxDecoration(
+              color: AppColors.yellowColor,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 50),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    "Explore",
+                    style: GoogleFonts.rubik(
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.darkColor),
+                  ),
+                ),
+                Container(
+                  height: 160,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: AppColors.yellowColor,
+                  ),
+                  child: GridView.builder(
+                    itemCount: GridList.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: (MediaQuery.of(context).size.width / 2) / 80,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30.0),
+                            color: AppColors.whiteColor,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black
+                                    .withOpacity(0.1), // Shadow color with opacity
+                                spreadRadius: 5, // Spread radius
+                                blurRadius: 7, // Blur radius
+                                offset:
+                                Offset(0, 3), // Offset in the x and y direction
+                              ),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Row(
+                              children: [
+                                Icon(GridList[index]['icon'],
+                                    color: AppColors.darkColor),
+                                SizedBox(width: 10),
+                                Expanded(
+                                  child: Text(
+                                    GridList[index]['name'],
+                                    style: GoogleFonts.rubik(
+                                      color: AppColors.darkColor,
+                                      fontSize:
+                                      MediaQuery.of(context).size.width * 0.048,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
           Container(
             // decoration: BoxDecoration(
             //   gradient: LinearGradient(
@@ -147,60 +232,73 @@ class _ExploreScreenState extends State<ExploreScreen> {
           TopCatagoryPlaces(),
           OnePlaceView(),
           HorizontalCityScroller(),
+          SizedBox(height: 20),
           Container(
-            height: 160,
+            height: 400,
             width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              color: AppColors.yellowColor,
-            ),
-            child: GridView.builder(
-              itemCount: GridList.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: (MediaQuery.of(context).size.width / 2) / 80,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30.0),
-                      color: AppColors.whiteColor,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black
-                              .withOpacity(0.1), // Shadow color with opacity
-                          spreadRadius: 5, // Spread radius
-                          blurRadius: 7, // Blur radius
-                          offset:
-                              Offset(0, 3), // Offset in the x and y direction
-                        ),
-                      ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
-                        children: [
-                           Icon(GridList[index]['icon'],
-                                  color: AppColors.darkColor),
-                          SizedBox(width: 10),
-                          Expanded(
-                            child: Text(
-                              GridList[index]['name'],
-                              style: GoogleFonts.rubik(
-                                color: AppColors.darkColor,
-                                fontSize:
-                                    MediaQuery.of(context).size.width * 0.048,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                      ),
+            child: Stack(
+              children: [
+                Container(
+                  height: 400,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(
+                          'https://getwallpapers.com/wallpaper/full/2/8/3/129934.jpg'),
+                      fit: BoxFit.cover,
                     ),
                   ),
-                );
-              },
+                ),
+                Container(
+                  height: 400,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                        7.0), // Adjust the value to your preference
+                    color: Colors.white.withOpacity(0.3),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: [
+                      SizedBox(height: 10),
+                      Text(
+                        "Explore the world",
+                        style: GoogleFonts.rubik(
+                          color: AppColors.DarkGreyColor,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        "Discover the best places to visit",
+                        style: GoogleFonts.rubik(
+                          color: AppColors.DarkGreyColor,
+                          fontSize: 20,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      TextButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                          MaterialStateProperty.all<Color>(AppColors.whiteColor),
+                        ),
+                        onPressed: (){
+
+                        },
+                        child: Text(
+                          "Explore",
+                          style: GoogleFonts.rubik(
+                            color: AppColors.DarkGreyColor,
+                            fontSize: 20,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              ],
             ),
           )
         ],

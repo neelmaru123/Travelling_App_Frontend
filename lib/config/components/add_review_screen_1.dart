@@ -333,7 +333,7 @@ class _AddReviewScreen1State extends State<AddReviewScreen1> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "1/3",
+                  "1/2",
                   style: GoogleFonts.rubik(
                       fontSize: 25, color: AppColors.darkColor),
                 ),
@@ -344,14 +344,16 @@ class _AddReviewScreen1State extends State<AddReviewScreen1> {
                     Map<String, dynamic> payload = parseJwt(token!);
                     print('Payload: $payload');
 
+                    String reviewDateString = _visitDate.toIso8601String();
+                    String todatDate = DateTime.now().toIso8601String();
+                    print(reviewDateString);
                     Map<String,dynamic> reviews = {
-                      "rating": _rating,
-                      "visitDate": _visitDate,
-                      "typeOfVisit": _visitType,
-                      "date" : DateTime.now(),
-                      "placeId" : widget.placeId,
+                      "rating": _rating as int,
+                      "visitDate": reviewDateString,
+                      "typeOfVisit": _visitType as String,
+                      "date" : todatDate,
+                      "placeId" : widget.placeId as String,
                       "userId" : payload['_id'],
-                      "photos" : "",
                       "review" : "",
                       "heading" : ""
                     };
@@ -364,7 +366,7 @@ class _AddReviewScreen1State extends State<AddReviewScreen1> {
                       color: AppColors.darkColor
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(7.0),
+                      padding: const EdgeInsets.all(10.0),
                       child: Text(
                         "Next",
                         style: GoogleFonts.rubik(

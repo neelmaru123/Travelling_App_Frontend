@@ -14,5 +14,20 @@ class Review {
       throw Exception('Failed to load reviews');
     }
   }
+
+  Future<Map<String,dynamic>> add_review(Map<String, dynamic> review) async{
+    http.Response response = await http.post(
+      Uri.parse(api_url + "review"),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(review)
+    );
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      return jsonDecode(response.body);
+    }
+  }
 }
 

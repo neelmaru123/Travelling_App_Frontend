@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -68,6 +69,11 @@ class _PlaceByIdState extends State<PlaceById> {
   //     throw 'Could not launch $url';
   //   }
   // }
+  void initState() {
+    FirebaseAnalytics.instance.logScreenView(screenName: 'Place_By_Id_Screen :+ ${widget.placeData["placeName"]}');
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

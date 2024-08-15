@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:travelling_app/config/colors/colors.dart';
 
 class OnePlaceView extends StatelessWidget {
@@ -42,9 +43,16 @@ class OnePlaceView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
-                    "Explore new \n place around you",
-                    style: TextStyle(
+                  Text(
+                    "Explore new",
+                    style: GoogleFonts.rubik(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.whiteColor),
+                  ),
+                  Text(
+                    "place around you",
+                    style: GoogleFonts.rubik(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: AppColors.whiteColor),

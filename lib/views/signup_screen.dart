@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:travelling_app/config/API/User/user_api.dart';
 import 'package:travelling_app/config/colors/colors.dart';
@@ -100,7 +101,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           passwordController.text,
                           fullNameController.text,
                         );
+
                         if (response['success'] == true) {
+                          await FirebaseAnalytics.instance.logSignUp(
+                            signUpMethod: 'email',
+                          );
                           Navigator.pushNamed(context, RoutesName.loginScreen);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(

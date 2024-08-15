@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -27,9 +28,15 @@ class _SearchScreenState extends State<SearchScreen> {
     });
   }
 
+  void initState() {
+    FirebaseAnalytics.instance.logScreenView(screenName: 'Search_Screen');
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.whiteColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -113,10 +120,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               ),
                               SizedBox(height: 10),
                               ElevatedButton(
-                                style: ButtonStyle(
-                                  side: MaterialStateProperty.all<BorderSide>(
-                                      BorderSide(color: AppColors.darkColor)),
-                                ),
+
                                 onPressed: () {},
                                 child: Padding(
                                   padding: const EdgeInsets.only(

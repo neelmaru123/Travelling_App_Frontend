@@ -17,8 +17,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'config/routes/routes.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -73,11 +73,20 @@ class MyApp extends StatelessWidget {
             if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else {
-              return snapshot.data == true
-                  ? WelcomeScreen()
-                  : (isLogged() == true
-                      ? HomeScreen()
-                      : LoginScreen());
+              return snapshot.data! ? WelcomeScreen() : FutureBuilder(
+                future: isLogged(),
+                builder: (context, AsyncSnapshot<bool> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator(); // Show loading spinner while waiting
+                  } else {
+                    if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else {
+                      return snapshot.data! ? HomeScreen() : LoginScreen();
+                    }
+                  }
+                },
+              );
             }
           }
         },

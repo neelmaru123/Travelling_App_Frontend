@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelling_app/config/colors/colors.dart';
@@ -123,6 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     );
                                   } else {
                                     prefs.setString("token", res['token']);
+                                    await FirebaseAnalytics.instance.logLogin();
                                     Navigator.pushNamed(
                                         context, RoutesName.homeScreen);
                                   }
