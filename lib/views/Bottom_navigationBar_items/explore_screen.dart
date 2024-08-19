@@ -49,10 +49,10 @@ List placeList = [
 ];
 
 List GridList = [
-  {'name': 'Hotels', 'icon': Icons.hotel},
-  {'name': 'Restaurants', 'icon': Icons.local_restaurant_outlined},
-  {'name': 'Things to do', 'icon':   Icons.check_circle },
-  {'name': 'Advanture', 'icon': Icons.hiking}
+  {'name': 'Hotels', 'icon': Icons.hotel, 'navigate' : 'hotelsHomeScreen'},
+  {'name': 'Restaurants', 'icon': Icons.local_restaurant_outlined, 'navigate' : 'hotelsHomeScreen'},
+  {'name': 'Things to do', 'icon':   Icons.check_circle, 'navigate' : 'hotelsHomeScreen' },
+  {'name': 'Advanture', 'icon': Icons.hiking, 'navigate' : 'hotelsHomeScreen'}
 ];
 
 class ExploreScreen extends StatefulWidget {
@@ -161,40 +161,45 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30.0),
-                            color: AppColors.whiteColor,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black
-                                    .withOpacity(0.1), // Shadow color with opacity
-                                spreadRadius: 5, // Spread radius
-                                blurRadius: 7, // Blur radius
-                                offset:
-                                Offset(0, 3), // Offset in the x and y direction
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Row(
-                              children: [
-                                Icon(GridList[index]['icon'],
-                                    color: AppColors.darkColor),
-                                SizedBox(width: 10),
-                                Expanded(
-                                  child: Text(
-                                    GridList[index]['name'],
-                                    style: GoogleFonts.rubik(
-                                      color: AppColors.darkColor,
-                                      fontSize:
-                                      MediaQuery.of(context).size.width * 0.048,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
+                        child: InkWell(
+                          onTap: (){
+                            Navigator.pushNamed(context, GridList[index]['navigate']);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30.0),
+                              color: AppColors.whiteColor,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black
+                                      .withOpacity(0.1), // Shadow color with opacity
+                                  spreadRadius: 5, // Spread radius
+                                  blurRadius: 7, // Blur radius
+                                  offset:
+                                  Offset(0, 3), // Offset in the x and y direction
                                 ),
                               ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Row(
+                                children: [
+                                  Icon(GridList[index]['icon'],
+                                      color: AppColors.darkColor),
+                                  SizedBox(width: 10),
+                                  Expanded(
+                                    child: Text(
+                                      GridList[index]['name'],
+                                      style: GoogleFonts.rubik(
+                                        color: AppColors.darkColor,
+                                        fontSize:
+                                        MediaQuery.of(context).size.width * 0.048,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

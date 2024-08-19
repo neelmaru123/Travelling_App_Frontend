@@ -38,4 +38,16 @@ class Place {
       throw Exception('Failed to load nearby places');
     }
   }
+
+  Future<dynamic> getNearByHotels(Map<String, dynamic> location) async {
+    final response = await http.post(Uri.parse(api_url + "place/findNearByHotels"),
+        headers: {"Content-Type": "application/json"},
+        body: jsonEncode(location)
+    );
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to load places by city');
+    }
+  }
 }

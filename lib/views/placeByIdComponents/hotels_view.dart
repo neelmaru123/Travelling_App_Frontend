@@ -10,9 +10,11 @@ class HotelsView extends StatefulWidget {
 }
 
 class _HotelsViewState extends State<HotelsView> {
+
   Future<Map<String, dynamic>> fetchPlace() async {
     final temp = await placeApi.Place().getPlaceById(widget.placeId);
     final res = await placeApi.Place().getNearByHotels(temp['data']['location']);
+    print(res);
     return res['data'];
   }
 
@@ -28,7 +30,11 @@ class _HotelsViewState extends State<HotelsView> {
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
           return Center(child: Text('No data available'));
         } else {
-          return Container();
+          return Scaffold(
+            body: Center(
+              child: Text('Hotels View'),
+            ),
+          );
         }
       },
     );

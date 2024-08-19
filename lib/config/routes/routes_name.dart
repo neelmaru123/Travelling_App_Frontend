@@ -8,4 +8,6 @@ class RoutesName{
   static const String placeDataScreen = "place_data";
   static const String addReviewScreen1 = "addReviewScreen1";
   static const String addReviewScreen2 = "addReviewScreen2";
+  static const String hotelsByPlace = "hotelsByPlace";
+  static const String hotelsHomeScreen = "hotelsHomeScreen";
 }
