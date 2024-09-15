@@ -5,6 +5,7 @@ import 'package:travelling_app/config/Delegate/custom_search_delegate.dart';
 import 'package:travelling_app/config/components/add_review_screen_1.dart';
 import 'package:travelling_app/config/components/place_by_id.dart';
 import 'package:travelling_app/config/routes/routes_name.dart';
+import 'package:travelling_app/views/Bottom_navigationBar_items/review_screen.dart';
 import 'package:travelling_app/views/Bottom_navigationBar_items/search_screen.dart';
 import 'package:travelling_app/views/home_screen.dart';
 import 'package:travelling_app/views/login_screen.dart';
@@ -63,7 +64,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Routes.generateRoute,
       // navigatorObservers: [FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)],
-      // home: HomeScreen(),
+      // home: ReviewScreen(),
       home: FutureBuilder(
         future: isFirstTime(),
         builder: (context, AsyncSnapshot<bool> snapshot) {

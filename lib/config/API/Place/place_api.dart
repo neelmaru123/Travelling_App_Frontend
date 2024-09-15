@@ -44,6 +44,7 @@ class Place {
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(location)
     );
+    print(response.body);
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {

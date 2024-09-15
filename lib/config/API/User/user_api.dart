@@ -1,10 +1,9 @@
-
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:travelling_app/config/API/Authentication/auth.dart';
 
-class User{
+class User {
   static const api_url = Auth.api_url;
 
   Future<dynamic> register(String email, String password, String name) async {
@@ -31,4 +30,22 @@ class User{
     }
   }
 
+  Future<dynamic> UserById(String id) async {
+    try {
+      http.Response response = await http.get(
+        Uri.parse(api_url + "user/" + id),
+        headers: <String, String>{
+          'Content-Type': 'application/json',
+        },
+      );
+      print(jsonDecode(response.body));
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      } else {
+        return jsonDecode(response.body);
+      }
+    } catch (e) {
+      throw e;
+    }
+  }
 }

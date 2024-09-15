@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:travelling_app/config/colors/colors.dart';
 import 'package:travelling_app/views/Bottom_navigationBar_items/explore_screen.dart';
+import 'package:travelling_app/views/Bottom_navigationBar_items/review_screen.dart';
 import 'package:travelling_app/views/Bottom_navigationBar_items/search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,9 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> Screens = [
     ExploreScreen(),
     SearchScreen(),
-    Center(
-      child: Text("Review"),
-    ),
+    ReviewScreen(),
     Center(
       child: Text("Profile"),
     )
