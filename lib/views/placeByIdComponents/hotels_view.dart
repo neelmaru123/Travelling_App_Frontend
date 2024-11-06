@@ -14,7 +14,7 @@ class _HotelsViewState extends State<HotelsView> {
   Future<Map<String, dynamic>> fetchPlace() async {
     final temp = await placeApi.Place().getPlaceById(widget.placeId);
     final res = await placeApi.Place().getNearByHotels(temp['data']['location']);
-    print(res);
+
     return res['data'];
   }
 

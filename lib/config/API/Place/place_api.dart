@@ -25,7 +25,8 @@ class Place {
     }
   }
 
-  Future<dynamic> getNearByPlaces(String id, Map<String, dynamic> location) async {
+  Future<dynamic> getNearByPlaces(
+      String id, Map<String, dynamic> location) async {
     final response = await http.post(Uri.parse(api_url + "place/nearByPlaces/"),
         body: jsonEncode({
           "_id": id,
@@ -40,10 +41,25 @@ class Place {
   }
 
   Future<dynamic> getNearByHotels(Map<String, dynamic> location) async {
-    final response = await http.post(Uri.parse(api_url + "place/findNearByHotels"),
+    final response = await http.post(
+        Uri.parse(api_url + "place/findNearByHotels"),
         headers: {"Content-Type": "application/json"},
-        body: jsonEncode(location)
-    );
+        body: jsonEncode(location));
+    print(response.body);
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to load places by city');
+    }
+  }
+
+  Future<dynamic> getPlacesByCity(String city) async {
+    final response = await http.post(Uri.parse(api_url + "place/getPlaceByCity"),
+        body: jsonEncode({
+          "city": city,
+        }),
+        headers: {"Content-Type": "application/json"});
+
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {

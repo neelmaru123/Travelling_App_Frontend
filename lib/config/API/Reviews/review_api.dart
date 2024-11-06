@@ -6,7 +6,17 @@ class Review {
   final api_url = Auth.api_url;
 
   Future<dynamic> getReviewsByPlaceId(String PlaceId) async {
-    final response = await http.get(Uri.parse(api_url + "review/" + PlaceId));
+    final response = await http.get(Uri.parse(api_url + "review/findReviewsByPlaceId/" + PlaceId));
+    print(response.body);
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to load reviews');
+    }
+  }
+
+  Future<dynamic> getReviewsByUserId(String UserId) async {
+    final response = await http.get(Uri.parse(api_url + "review/findReviewsByUserId/" + UserId));
     print(response.body);
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
