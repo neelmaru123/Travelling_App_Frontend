@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travelling_app/config/colors/colors.dart';
+import 'package:travelling_app/config/components/City_places.dart';
+import 'package:travelling_app/config/routes/routes_name.dart';
 import 'package:travelling_app/views/Bottom_navigationBar_items/explore_screen.dart';
 
 List PlaceList = [
@@ -38,63 +40,70 @@ Widget PlacesGrid(){
       itemBuilder: (BuildContext context, int index) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
-            child: Stack(
-              children: [
-                Container(
-                  height: 185,
-                  width: 185,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7.0),
-                    image: DecorationImage(
-                      image: NetworkImage(PlaceList[index]['Image'] ??
-                          "https://th.bing.com/th/id/OIP.YKj7OrGcqWLugJN6YtlGawHaEK?w=293&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"),
-                      fit: BoxFit.cover,
-                      onError: (exception, stackTrace) {
-                        print("Image not found");
-                      },
+          child: InkWell(
+            onTap: () {
+              print(PlaceList[index]['city']);
+              Navigator.pushNamed(context, RoutesName.placeByCity,
+                  arguments: PlaceList[index]['Name']);
+            },
+            child: Container(
+              child: Stack(
+                children: [
+                  Container(
+                    height: 185,
+                    width: 185,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(7.0),
+                      image: DecorationImage(
+                        image: NetworkImage(PlaceList[index]['Image'] ??
+                            "https://th.bing.com/th/id/OIP.YKj7OrGcqWLugJN6YtlGawHaEK?w=293&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"),
+                        fit: BoxFit.cover,
+                        onError: (exception, stackTrace) {
+                          print("Image not found");
+                        },
+                      ),
                     ),
                   ),
-                ),
-                Positioned.fill(
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      height: 50, // Adjust the height of the gradient overlay as needed
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(7.0),
-                          bottomRight: Radius.circular(7.0),
-                        ),
-                        gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Colors.transparent,
-                            Colors.black.withOpacity(0.7), // Adjust opacity as needed
-                          ],
+                  Positioned.fill(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Container(
+                        height: 50, // Adjust the height of the gradient overlay as needed
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(7.0),
+                            bottomRight: Radius.circular(7.0),
+                          ),
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.transparent,
+                              Colors.black.withOpacity(0.7), // Adjust opacity as needed
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(child: Container()), // Add some spacing between the image and the text
-                      Text(
-                        PlaceList[index]['Name'] ?? 'No name',
-                        style: TextStyle(
-                            fontSize: 22,
-                            color: AppColors.whiteColor,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(child: Container()), // Add some spacing between the image and the text
+                        Text(
+                          PlaceList[index]['Name'] ?? 'No name',
+                          style: TextStyle(
+                              fontSize: 22,
+                              color: AppColors.whiteColor,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         );

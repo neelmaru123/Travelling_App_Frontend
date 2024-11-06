@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:travelling_app/config/colors/colors.dart';
 import 'package:travelling_app/views/Bottom_navigationBar_items/explore_screen.dart';
+import 'package:travelling_app/views/Bottom_navigationBar_items/profile_screen.dart';
 import 'package:travelling_app/views/Bottom_navigationBar_items/review_screen.dart';
 import 'package:travelling_app/views/Bottom_navigationBar_items/search_screen.dart';
 
@@ -19,9 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ExploreScreen(),
     SearchScreen(),
     ReviewScreen(),
-    Center(
-      child: Text("Profile"),
-    )
+    ProfileScreen()
   ];
 
   @override

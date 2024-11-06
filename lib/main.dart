@@ -2,9 +2,11 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travelling_app/config/Delegate/custom_search_delegate.dart';
+import 'package:travelling_app/config/StateManagment/UserProvider.dart';
 import 'package:travelling_app/config/components/add_review_screen_1.dart';
 import 'package:travelling_app/config/components/place_by_id.dart';
 import 'package:travelling_app/config/routes/routes_name.dart';
+import 'package:travelling_app/views/Bottom_navigationBar_items/profile_screen.dart';
 import 'package:travelling_app/views/Bottom_navigationBar_items/review_screen.dart';
 import 'package:travelling_app/views/Bottom_navigationBar_items/search_screen.dart';
 import 'package:travelling_app/views/home_screen.dart';
@@ -15,12 +17,20 @@ import 'dart:convert';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'package:provider/provider.dart';  // Import the provider package
 import 'config/routes/routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => UserProvider(),
+      child: MyApp(),
+    ),
+  );
+
 }
 
 Future<bool> isFirstTime() async {
@@ -43,6 +53,7 @@ Future<bool> isLogged() async {
   if (token != null) {
     Map<String, dynamic> payload = parseJwt(token);
     print('Payload: $payload');
+    UserProvider().setUserData(payload['id']);
     return true;
   }
 
@@ -64,7 +75,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Routes.generateRoute,
       // navigatorObservers: [FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance)],
-      // home: ReviewScreen(),
+      // home: ProfileScreen(),
       home: FutureBuilder(
         future: isFirstTime(),
         builder: (context, AsyncSnapshot<bool> snapshot) {

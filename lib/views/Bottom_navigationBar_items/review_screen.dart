@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +59,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 SizedBox(height: 20),
                 FutureBuilder(future: getUser(), builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
+                    return Center(child: ProgressIndicatorTheme(data: ProgressIndicatorThemeData(color: AppColors.darkColor), child: CircularProgressIndicator()));
                   } else if (snapshot.hasError) {
                     return Center(child: Text('Error: ${snapshot.error}'));
                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {

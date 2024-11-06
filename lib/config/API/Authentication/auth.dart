@@ -5,6 +5,7 @@ import 'dart:convert';
 
 class Auth {
   static const api_url = "https://travelling-app-backend.onrender.com/";
+  // static const api_url = "http://localhost:3500/";
 
   Future<dynamic> login(String email, String password) async {
     try {

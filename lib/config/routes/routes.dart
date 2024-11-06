@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:travelling_app/config/components/City_places.dart';
 import 'package:travelling_app/config/components/Hotel_view_home_screen.dart';
 import 'package:travelling_app/config/components/add_review_screen_1.dart';
 import 'package:travelling_app/config/components/add_review_screen_2.dart';
@@ -45,6 +46,10 @@ class Routes{
       case RoutesName.hotelsByPlace:
         final String id = settings.arguments as String;
         return MaterialPageRoute(builder: (context) => HotelsView(placeId: id));
+        break;
+      case RoutesName.placeByCity:
+        final String city = settings.arguments as String;
+        return MaterialPageRoute(builder: (context) => CityPlaces(city: city));
         break;
 
       default:

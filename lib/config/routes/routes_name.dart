@@ -10,4 +10,5 @@ class RoutesName{
   static const String addReviewScreen2 = "addReviewScreen2";
   static const String hotelsByPlace = "hotelsByPlace";
   static const String hotelsHomeScreen = "hotelsHomeScreen";
+  static const String placeByCity = "placeByCity";
 }
